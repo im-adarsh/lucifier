@@ -1,5 +1,6 @@
 package com.lucifier.app.entity;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,8 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(callSuper = false)
-public class Product {
+public class Products {
 
-  private String title;
-  private String description;
+  private List<Product> products;
 }
