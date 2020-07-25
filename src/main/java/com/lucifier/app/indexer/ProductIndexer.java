@@ -11,7 +11,7 @@ import org.apache.lucene.index.IndexWriterConfig;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProductIndexer extends RootIndexer implements Indexer {
+public class ProductIndexer extends BaseIndexer implements Indexer {
 
 
   @Override
