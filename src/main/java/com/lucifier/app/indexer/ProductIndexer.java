@@ -1,5 +1,6 @@
 package com.lucifier.app.indexer;
 
+import com.lucifier.app.constant.Fields;
 import com.lucifier.app.entity.Product;
 import java.io.File;
 import java.io.IOException;
@@ -25,8 +26,9 @@ public class ProductIndexer extends BaseIndexer implements Indexer {
     IndexWriter writer = new IndexWriter(memoryIndex, indexWriterConfig);
     for (Product p : products) {
       Document document = new Document();
-      document.add(new TextField("title", p.getTitle(), Field.Store.YES));
-      document.add(new TextField("description", p.getDescription(), Field.Store.YES));
+      document.add(new TextField(Fields.ID, p.getId(), Field.Store.YES));
+      document.add(new TextField(Fields.TITLE, p.getTitle(), Field.Store.YES));
+      document.add(new TextField(Fields.DESCRIPTION, p.getDescription(), Field.Store.YES));
       writer.addDocument(document);
     }
     writer.close();

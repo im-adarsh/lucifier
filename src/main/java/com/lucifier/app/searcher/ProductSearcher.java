@@ -1,11 +1,14 @@
 package com.lucifier.app.searcher;
 
+import com.lucifier.app.constant.Fields;
 import com.lucifier.app.entity.Product;
 import com.lucifier.app.searcher.querier.SearchQuery;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
@@ -34,11 +37,18 @@ public class ProductSearcher extends BaseSearcher implements Searcher {
     TopDocs topDocs = searcher.search(query, 10);
 
     List<Product> products = new ArrayList<>();
+    Map<String, Boolean> lookup = new HashMap<>();
     for (ScoreDoc scoreDoc : topDocs.scoreDocs) {
       Document doc = (searcher.doc(scoreDoc.doc));
+      if (lookup.containsKey(doc.getField(Fields.ID).stringValue())) {
+        continue;
+      }
+      lookup.put(doc.getField(Fields.ID).stringValue(), true);
       doc.getFields().forEach(f -> {
         if (q.getFieldValue().getField().getField().equals(f.name())) {
-          products.add(Product.builder().title(f.stringValue()).build());
+          products.add(Product.builder()
+              .id(doc.getField(Fields.ID).stringValue())
+              .title(f.stringValue()).build());
         }
       });
     }

@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 public class Product {
 
+  private String id;
   private String title;
   private String description;
 }
