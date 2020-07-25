@@ -5,5 +5,6 @@ import java.io.IOException;
 import java.util.List;
 
 public interface Indexer {
-   void index(List<Product> products) throws IOException;
+
+  void index(List<Product> products) throws IOException;
 }
