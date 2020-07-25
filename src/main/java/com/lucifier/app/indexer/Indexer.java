@@ -1,6 +1,6 @@
-package com.lucifier.indexer;
+package com.lucifier.app.indexer;
 
-import com.lucifier.entity.Product;
+import com.lucifier.app.entity.Product;
 import java.io.IOException;
 import java.util.List;
 

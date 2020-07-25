@@ -1,6 +1,6 @@
-package com.lucifier.indexer;
+package com.lucifier.app.indexer;
 
-import com.lucifier.entity.Product;
+import com.lucifier.app.entity.Product;
 import java.io.IOException;
 import java.util.List;
 import org.apache.lucene.document.Document;
@@ -16,7 +16,7 @@ public class ProductIndexer extends RootIndexer implements Indexer {
 
     IndexWriter writer = new IndexWriter(memoryIndex, indexWriterConfig);
 
-    for (Product p: products) {
+    for (Product p : products) {
       Document document = new Document();
       document.add(new TextField("title", p.getTitle(), Field.Store.YES));
       document.add(new TextField("body", p.getDescription(), Field.Store.YES));

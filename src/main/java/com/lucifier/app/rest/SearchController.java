@@ -1,6 +1,6 @@
-package com.lucifier.rest;
+package com.lucifier.app.rest;
 
-import com.lucifier.entity.Product;
+import com.lucifier.app.entity.Product;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
