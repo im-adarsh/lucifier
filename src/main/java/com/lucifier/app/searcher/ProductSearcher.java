@@ -24,7 +24,7 @@ public class ProductSearcher extends BaseSearcher implements Searcher {
   @Override
   public List<Product> search(SearchQuery q) throws IOException, ParseException {
     memoryIndex = FSDirectory.open(new File("indexdata").toPath());
-    
+
     Query query = new QueryParser(q.getFieldValue().getField().getField(),
         analyzer)
         .parse(q.getFieldValue().getValue().getValue());
@@ -37,7 +37,7 @@ public class ProductSearcher extends BaseSearcher implements Searcher {
     for (ScoreDoc scoreDoc : topDocs.scoreDocs) {
       Document doc = (searcher.doc(scoreDoc.doc));
       doc.getFields().forEach(f -> {
-        if (q.getFieldValue().getField().equals(f.name())) {
+        if (q.getFieldValue().getField().getField().equals(f.name())) {
           products.add(Product.builder().title(f.stringValue()).build());
         }
       });

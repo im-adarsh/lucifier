@@ -26,7 +26,7 @@ public class ProductIndexer extends BaseIndexer implements Indexer {
     for (Product p : products) {
       Document document = new Document();
       document.add(new TextField("title", p.getTitle(), Field.Store.YES));
-      document.add(new TextField("body", p.getDescription(), Field.Store.YES));
+      document.add(new TextField("description", p.getDescription(), Field.Store.YES));
       writer.addDocument(document);
     }
     writer.close();
